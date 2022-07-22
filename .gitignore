@@ -5,6 +5,7 @@ node_modules
 .env
 /.pnp
 .pnp.js
+Task.todo
 
 # testing
 /coverage
