@@ -448,6 +448,10 @@ span.text-red {
   align-items: center;
 }
 
+.product-detail-desc {
+  position: top;
+}
+
 .product-detail-desc h4 {
   margin-top: 10px;
 }
