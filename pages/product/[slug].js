@@ -9,10 +9,12 @@ import { client, urlFor } from "../../lib/client";
 
 import { Product } from "../../components";
 
+import { useStateContext } from "../../context/StateContext";
+
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
-
   const [index, setIndex] = useState(0);
+  const { decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
   return (
     <div>
@@ -27,8 +29,8 @@ const ProductDetails = ({ product, products }) => {
           </div>
           <div className="small-images-container">
             {image?.map((item, i) => (
-              // eslint-disable-next-line react/jsx-key
               <img
+                key={i}
                 src={urlFor(item)}
                 className={
                   i === index ? "small-image selected-image" : "small-image"
@@ -58,13 +60,11 @@ const ProductDetails = ({ product, products }) => {
           <div className="quantity">
             <h3>Quantity:</h3>
             <p className="quantity-desc">
-              <span className="minus" onClick="">
+              <span className="minus" onClick={decQty}>
                 <AiOutlineMinus />
               </span>
-              <span className="num" onClick="">
-                0
-              </span>
-              <span className="plus" onClick="">
+              <span className="num">{qty}</span>
+              <span className="plus" onClick={incQty}>
                 <AiOutlinePlus />
               </span>
             </p>
@@ -72,10 +72,18 @@ const ProductDetails = ({ product, products }) => {
 
           {/* Buttons */}
           <div className="buttons">
-            <button type="button" className="add-to-cart" onClick="">
+            <button
+              type="button"
+              className="add-to-cart"
+              onClick={() => onAdd(product, qty)}
+            >
               Add to Cart
             </button>
-            <button type="button" className="buy-now" onClick="">
+            <button
+              type="button"
+              className="buy-now"
+              // onClick=""
+            >
               Buy Now
             </button>
           </div>
@@ -126,12 +134,13 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const products = await client.fetch(productsQuery);
 
   console.log(product);
-  console.log(products);
 
   return {
     props: { products, product },
   };
 };
+
+export default ProductDetails;
 
 // export async function getStaticPaths() {
 //   return {
@@ -144,5 +153,3 @@ export const getStaticProps = async ({ params: { slug } }) => {
 //     fallback: true,
 //   };
 // }
-
-export default ProductDetails;
