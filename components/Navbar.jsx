@@ -9,9 +9,9 @@ const Navbar = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
 
   return (
-    <div className="navbar-container">
+    <nav className="navbar-container3">
       <p className="logo">
-        <Link href="/">CultureX </Link>
+        <Link href="/">Kristosbiros</Link>
       </p>
 
       <button
@@ -24,7 +24,7 @@ const Navbar = () => {
       </button>
 
       {showCart && <Cart />}
-    </div>
+    </nav>
   );
 };
 

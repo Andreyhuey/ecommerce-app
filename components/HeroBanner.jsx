@@ -1,32 +1,31 @@
 import React from "react";
 import Link from "next/link";
-import { urlFor } from "../lib/client";
 
-const HeroBanner = ({ heroBanner }) => {
+const HeroBanner = () => {
   return (
-    <div className="hero-banner-container">
-      <div>
-        <p className="beats-solo">{heroBanner.smallText}</p>
-        <h3>{heroBanner.midText}</h3>
-        <h1>{heroBanner.largeText1}</h1>
+    <>
+      <div className="hero-banner-container">
+        <h3 className="beats-solo">Buy from experts at wholesale prices</h3>
+      </div>
 
-        <img
-          src={urlFor(heroBanner.image)}
-          alt="headphones"
-          className="hero-banner-image"
-        />
-
-        <div>
-          <Link href={`/product/${heroBanner.product}`}>
-            <button type="button">{heroBanner.buttonText}</button>
-          </Link>
-          <div className="desc">
-            <h5>Description</h5>
-            <p>{heroBanner.desc}</p>
-          </div>
+      <div className="container">
+        <div className="item">
+          <h3>DISCOUNTED DESIGNER PIECES</h3>
+          Pre-loved vintage designer pieces. Polished and refurbished where
+          required or requested.
+        </div>
+        <div className="item">
+          <h3>DISCRETE INTERNATIONAL SHIPPING</h3>
+          All products are securely packaged in a discreet envelope. Tracked,
+          signed and insured.
+        </div>
+        <div className="item">
+          <h3>14-DAY RETURN POLICY</h3>
+          We accept returns within 14 days of receipt in original condition and
+          with the original box and paperwork.
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,15 +1,17 @@
 import React from "react";
 import { client } from "../lib/client";
-import { Product, FooterBanner, HeroBanner } from "../components";
+import { Product } from "../components";
+import HeroBanner from "../components/HeroBanner";
+// import { Amethyst, Diamond, Emerald } from "../gems";
 
-const Home = ({ products, bannerData }) => {
+const Home = ({ products }) => {
   return (
     <>
-      <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
+      <HeroBanner />
 
       <div className="products-heading">
         <h2>Best Selling Products</h2>
-        <p>Speakers of many variations</p>
+        <p>Gems of many variations</p>
       </div>
 
       <div className="products-container">
@@ -18,7 +20,36 @@ const Home = ({ products, bannerData }) => {
         ))}
       </div>
 
-      <FooterBanner footerBanner={bannerData && bannerData[0]} />
+      {/*
+      <div className="products-heading">
+         <h2>Best Selling Amethysts</h2>
+      </div>
+
+      <div className="products-container">
+        {amethystData?.map((amethyst) => (
+          <Amethyst key={amethyst._id} amethyst={amethyst} />
+        ))}
+      </div>
+
+      <div className="products-heading">
+        <h2>Best Selling Diamonds</h2>
+      </div> */}
+
+      {/* <div className="products-container">
+        {diamondData?.map((diamond) => (
+          <Diamond key={diamond._id} diamond={diamond} />
+        ))}
+      </div> */}
+
+      {/* <div className="products-heading">
+        <h2>Best Selling Emeralds</h2>
+      </div>
+
+      <div className="products-container">
+        {emeraldData?.map((emerald) => (
+          <Emerald key={emerald._id} emerald={emerald} />
+        ))}
+      </div> */}
     </>
   );
 };
@@ -27,11 +58,22 @@ export const getServerSideProps = async () => {
   const query = '*[_type == "product"]';
   const products = await client.fetch(query);
 
-  const bannerQuery = '*[_type == "banner"]';
-  const bannerData = await client.fetch(bannerQuery);
+  // const amethystQuery = '*[_type == "amethyst"]';
+  // const amethystData = await client.fetch(amethystQuery);
+
+  // const diamondQuery = '*[_type == "diamond"]';
+  // const diamondData = await client.fetch(diamondQuery);
+
+  // const emeraldQuery = '*[_type == "emerald"]';
+  // const emeraldData = await client.fetch(emeraldQuery);
 
   return {
-    props: { products, bannerData },
+    props: {
+      products,
+      // amethystData,
+      // diamondData,
+      // emeraldData,
+    },
   };
 };
 

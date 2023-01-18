@@ -7,12 +7,13 @@ const Layout = ({ children }) => {
   return (
     <div className="layout">
       <Head>
-        <title>CultureX Store</title>
+        <title>kristosbiros Store</title>
       </Head>
-      <header>
-        <Navbar />
-      </header>
+
+      <Navbar />
+
       <main className="main-container">{children}</main>
+
       <footer>
         <Footer />
       </footer>
